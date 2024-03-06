@@ -8,3 +8,4 @@ About_India_Ai.egg-info/top_level.txt
 src/__init__.py
 src/components/__init__.py
 src/components/data_preparation.py
+src/components/data_scrapper.py

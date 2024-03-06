@@ -1,6 +1,4 @@
 pandas
-requests
-beautifulsoup4
-time
+pdfkit
 
 # -e .

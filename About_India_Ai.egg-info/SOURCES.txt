@@ -1,0 +1,10 @@
+README.md
+setup.py
+About_India_Ai.egg-info/PKG-INFO
+About_India_Ai.egg-info/SOURCES.txt
+About_India_Ai.egg-info/dependency_links.txt
+About_India_Ai.egg-info/requires.txt
+About_India_Ai.egg-info/top_level.txt
+src/__init__.py
+src/components/__init__.py
+src/components/data_preparation.py

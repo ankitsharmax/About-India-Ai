@@ -1,6 +1,6 @@
 import os
 import sys
-import pandas
+import pandas as pd
 from dataclasses import dataclass
 
 @dataclass
@@ -20,4 +20,14 @@ class DataPreparation:
             pass
 
     def data_transformation(self,df):
-        pass
+        try:
+            df = df[df["country"]=='India']
+            # return df
+            df.to_csv(self.ingestion_config.data_path,index=False,header=True)
+        except:
+            pass
+
+if __name__ == '__main__':
+    data_obj = DataPreparation()
+    df = data_obj.initiate_data_ingestion()
+    data_obj.data_transformation(df)

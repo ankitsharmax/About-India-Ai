@@ -1,6 +1,8 @@
 import os
 import sys
 import pandas as pd
+import warnings
+warnings.filterwarnings("ignore")
 from dataclasses import dataclass
 
 @dataclass
@@ -25,18 +27,27 @@ class DataPreparation:
             pass
 
     def data_preprocessor(self,df):
+        df.rename(columns={'city_ascii':'city'},inplace=True)
+        # Removing duplicate records
+        print("Data Size before removing duplicate records {0}".format(df.shape))
+        df.drop_duplicates(keep='first',inplace=True)
+        print("Data Size after removing duplicate records {0}".format(df.shape))
+
+        df.reset_index(inplace=True,drop=True)
+
         df["page_url"] = None
         df["download_url"] = None
-        df["download_status"] = None
-        print(df)
+        df["download_status"] = 0
         for i in range(df.shape[0]):
             df.loc[i,"page_url"] = self.data_config.data_scrapper_site + df.loc[i,"city"]
             df.loc[i,"download_url"] = self.data_config.data_download_link + df.loc[i,"city"]
-        # df.to_csv(self.data_config.crawler_data,index=False,header=True)
+        df.to_csv(self.data_config.crawler_data,index=False,header=True)
+
+        # converting city name to camel-case
+
         return df
-    # https://codereview.stackexchange.com/questions/160784/small-program-to-download-wikipedia-articles-to-pdf
 
 if __name__ == '__main__':
     data_obj = DataPreparation()
     df = data_obj.initiate_data_ingestion()
-    print(data_obj.data_preprocessor(df[["city"]]))
+    data_obj.data_preprocessor(df[["city_ascii"]])

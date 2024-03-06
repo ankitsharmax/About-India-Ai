@@ -4,4 +4,4 @@ Version: 0.0.1
 Author: ankit
 Author-email: kumarankitx022@gmail.com
 Requires-Dist: pandas
-Requires-Dist: pdfkit
+Requires-Dist: numpy
